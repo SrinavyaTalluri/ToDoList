@@ -10,11 +10,17 @@ filters.forEach(btn => {
         document.querySelector("span.active").classList.remove("active");
         btn.classList.add("active");
         showTodo(btn.id);
-    });
-});
+    }
+);
+}
+);
+
+
+
 function showTodo(filter) {
     let liTag = "";
-    if(todos) {
+    if(todos)
+    {
         todos.forEach((todo, id) => {
             let completed = todo.status == "completed" ? "checked" : "";
             if(filter == todo.status || filter == "all") {
@@ -40,6 +46,12 @@ function showTodo(filter) {
     taskBox.offsetHeight >= 300 ? taskBox.classList.add("overflow") : taskBox.classList.remove("overflow");
 }
 showTodo("all");
+
+
+
+
+
+
 function showMenu(selectedTask) {
     let menuDiv = selectedTask.parentElement.lastElementChild;
     menuDiv.classList.add("show");
@@ -49,6 +61,8 @@ function showMenu(selectedTask) {
         }
     });
 }
+
+
 
 function updateStatus(selectedTask) {
     let taskName = selectedTask.parentElement.lastElementChild;
@@ -61,6 +75,10 @@ function updateStatus(selectedTask) {
     }
     localStorage.setItem("todo-list", JSON.stringify(todos))
 }
+
+
+
+
 
 function editTask(taskId, textName) {
     editId = taskId;
@@ -81,17 +99,27 @@ clearAll.addEventListener("click", () => {
     localStorage.setItem("todo-list", JSON.stringify(todos));
     showTodo()
 });
+
+
+
+
 taskInput.addEventListener("keyup", e => {
     let userTask = taskInput.value.trim();
-    if(e.key == "Enter" && userTask) {
-        if(!isEditTask) {
+    if(e.key == "Enter" && userTask) 
+    {
+        if(!isEditTask) 
+        {
             todos = !todos ? [] : todos;
             let taskInfo = {name: userTask, status: "pending"};
             todos.push(taskInfo);
-        } else {
+        } 
+        else
+        {
             isEditTask = false;
             todos[editId].name = userTask;
         }
+
+        
         taskInput.value = "";
         localStorage.setItem("todo-list", JSON.stringify(todos));
         showTodo(document.querySelector("span.active").id);
